@@ -5,29 +5,31 @@ const findSum = function(array) {
     }
     return sum
   };
- const findFrequency = function(array) {
-    const frequencyCount = {};
-    let mostFrequentItem = array[0];
-    let leastFrequentItem = array[0];
-  
-    for (let i = 0; i < array.length; i++) {
-      const item = array[i];
-      frequencyCount[item] = (frequencyCount[item] || 0) + 1;
-  
-      if (frequencyCount[item] > frequencyCount[mostFrequentItem]) {
-        mostFrequentItem = item;
-      }
-  
-      if (frequencyCount[item] < frequencyCount[leastFrequentItem]) {
-        leastFrequentItem = item;
-      }
+
+const findFrequency = function(array) {
+  const frequencyCount = {};
+  let mostFrequentItem = array[0];
+  let leastFrequentItem = array[0];
+
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i];
+    frequencyCount[item] = (frequencyCount[item] || 0) + 1;
+
+    if (frequencyCount[item] > frequencyCount[mostFrequentItem]) {
+      mostFrequentItem = item;
     }
-  
-    return { most: mostFrequentItem, least: leastFrequentItem };
-  };
+
+    if (frequencyCount[item] < frequencyCount[leastFrequentItem] || 
+        (frequencyCount[item] === frequencyCount[leastFrequentItem] && 
+         item.length > leastFrequentItem.length)) {
+      leastFrequentItem = item;
+    }
+  }
+
+  return { most: mostFrequentItem, least: leastFrequentItem };
 
 const isPalindrome = function(str){
-    str = str.toLowerCase
+    str = str.toLowerCase();
     for (let i = 0; i < str.length; i++) {
         if (str[i] !== str[str.length -1 -i]){
             return false;
